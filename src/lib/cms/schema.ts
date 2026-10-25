@@ -7,7 +7,7 @@ import contact from "@/content/contact.json";
 
 export type FieldType = "text" | "textarea" | "image" | "url";
 export type FieldDef = { key: string; label: string; type: FieldType };
-export type Item = { id: string; [key: string]: string };
+export type Item = { id: string; title?: string; text?: string; image?: string; value?: string; label?: string; url?: string; [key: string]: string | undefined };
 export type SectionData = { items: Item[]; [key: string]: string | Item[] };
 
 export type SectionKey = "general" | "about" | "activities" | "services" | "gallery" | "contact";

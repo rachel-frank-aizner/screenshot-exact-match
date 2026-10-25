@@ -20,7 +20,7 @@ export function ImportButton({ def, onLoad, size = "default" }: { def: SectionDe
           e.target.value = "";
           if (!file) return;
           const res = validateSectionJson(await file.text(), def);
-          if (!res.ok) return toast.error(`ייבוא נכשל: ${res.error}`);
+          if (!res.ok) { toast.error(`ייבוא נכשל: ${res.error}`); return; }
           onLoad(res.data);
           toast.success(`${file.name} נטען בהצלחה`);
         }}
