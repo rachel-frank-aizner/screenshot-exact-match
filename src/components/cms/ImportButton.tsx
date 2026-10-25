@@ -1,32 +1,31 @@
 import { useRef } from "react";
 import { Upload } from "lucide-react";
-import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import type { SectionData, SectionDef } from "@/lib/cms/schema";
-import { validateSectionJson } from "@/lib/cms/validate";
+import type { FileName } from "@/lib/cms/files";
+import { useCms } from "@/lib/cms/store";
+import { importFiles } from "@/lib/cms/actions";
 
-export function ImportButton({ def, onLoad, size = "default" }: { def: SectionDef; onLoad: (d: SectionData) => void; size?: "default" | "sm" }) {
+/** Without `file`: multi-select of any source files or a ZIP. With `file`: replaces that one file. */
+export function ImportButton({ file, size = "default", label = "Import" }: { file?: FileName; size?: "default" | "sm"; label?: string }) {
   const ref = useRef<HTMLInputElement>(null);
+  const cms = useCms();
   return (
     <>
       <input
         ref={ref}
         type="file"
-        accept="application/json,.json"
+        multiple={!file}
+        accept={file ? "application/json,.json" : "application/json,.json,.zip"}
         className="hidden"
-        data-testid={`import-${def.key}`}
+        data-testid={`import-${file ?? "all"}`}
         onChange={async (e) => {
-          const file = e.target.files?.[0];
+          const list = Array.from(e.target.files ?? []);
           e.target.value = "";
-          if (!file) return;
-          const res = validateSectionJson(await file.text(), def);
-          if (!res.ok) { toast.error(`ייבוא נכשל: ${res.error}`); return; }
-          onLoad(res.data);
-          toast.success(`${file.name} נטען בהצלחה`);
+          if (list.length) await importFiles(cms, list, file);
         }}
       />
       <Button variant="outline" size={size} onClick={() => ref.current?.click()}>
-        <Upload /> Import
+        <Upload /> {label}
       </Button>
     </>
   );

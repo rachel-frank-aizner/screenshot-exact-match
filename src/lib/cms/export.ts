@@ -1,7 +1,5 @@
 import JSZip from "jszip";
-import { SECTIONS, type SectionData, type SectionKey } from "./schema";
-
-export const toJson = (data: SectionData) => JSON.stringify(data, null, 2);
+import { FILES, serialize, type Files, type Loaded } from "./files";
 
 export function downloadBlob(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob);
@@ -14,18 +12,14 @@ export function downloadBlob(blob: Blob, filename: string) {
   setTimeout(() => URL.revokeObjectURL(url), 30_000);
 }
 
-export function downloadJson(data: SectionData, filename: string) {
-  downloadBlob(new Blob([toJson(data)], { type: "application/json;charset=utf-8" }), filename);
+export function downloadFile(f: Loaded, filename: string) {
+  downloadBlob(new Blob([serialize(f)], { type: "application/json;charset=utf-8" }), filename);
 }
 
-export function buildZipArchive(all: Record<SectionKey, SectionData>) {
+export function buildZipArchive(files: Files) {
   const zip = new JSZip();
-  const folder = zip.folder("content")!;
-  SECTIONS.forEach((s) => folder.file(s.file, toJson(all[s.key])));
+  FILES.forEach((n) => { const f = files[n]; if (f) zip.file(n, serialize(f)); });
   return zip;
 }
 
-export const buildZip = (all: Record<SectionKey, SectionData>) =>
-  buildZipArchive(all).generateAsync({ type: "blob" });
-
-export const readFileText = (file: File) => file.text();
+export const buildZip = (files: Files) => buildZipArchive(files).generateAsync({ type: "blob" });
