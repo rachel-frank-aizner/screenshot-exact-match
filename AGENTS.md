@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- CMS content is schema-driven: section definitions live in src/lib/cms/schema.ts and sample data in src/content/*.json; all saving is client-side (React state + localStorage), export via Blob/JSZip — no backend by user requirement.

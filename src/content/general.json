@@ -1,0 +1,13 @@
+{
+  "siteName": "SKILLZ",
+  "title": "מיומנויות לחיים. כלים לעתיד.",
+  "subtitle": "SKILLZ מפתחת תוכניות חינוכיות המעניקות לבני נוער מיומנויות רגשיות, חברתיות ותעסוקתיות להצלחה בחיים.",
+  "ctaText": "לתוכניות שלנו",
+  "ctaLink": "https://www.skillz-edu.org/",
+  "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200",
+  "items": [
+    { "id": "stat-1", "label": "בני נוער משתתפים", "value": "12,000+" },
+    { "id": "stat-2", "label": "בתי ספר שותפים", "value": "150" },
+    { "id": "stat-3", "label": "שנות פעילות", "value": "10" }
+  ]
+}
