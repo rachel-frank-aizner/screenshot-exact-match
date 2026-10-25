@@ -18,11 +18,14 @@ export function downloadJson(data: SectionData, filename: string) {
   downloadBlob(new Blob([toJson(data)], { type: "application/json;charset=utf-8" }), filename);
 }
 
-export async function buildZip(all: Record<SectionKey, SectionData>) {
+export function buildZipArchive(all: Record<SectionKey, SectionData>) {
   const zip = new JSZip();
   const folder = zip.folder("content")!;
   SECTIONS.forEach((s) => folder.file(s.file, toJson(all[s.key])));
-  return zip.generateAsync({ type: "blob" });
+  return zip;
 }
+
+export const buildZip = (all: Record<SectionKey, SectionData>) =>
+  buildZipArchive(all).generateAsync({ type: "blob" });
 
 export const readFileText = (file: File) => file.text();

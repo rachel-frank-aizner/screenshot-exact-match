@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import JSZip from "jszip";
 import { DEFAULT_CONTENT, getSection } from "@/lib/cms/schema";
 import { validateSectionJson } from "@/lib/cms/validate";
-import { buildZip } from "@/lib/cms/export";
+import { buildZipArchive } from "@/lib/cms/export";
 
 describe("CMS JSON", () => {
   it("accepts the bundled sample files", () => {
@@ -23,7 +23,7 @@ describe("CMS JSON", () => {
     expect(validateSectionJson(JSON.stringify(bad), getSection("gallery")).ok).toBe(false);
   });
   it("zip contains all six files", async () => {
-    const zip = await JSZip.loadAsync(await (await buildZip(DEFAULT_CONTENT)).arrayBuffer());
+    const zip = await JSZip.loadAsync(await buildZipArchive(DEFAULT_CONTENT).generateAsync({ type: "uint8array" }));
     const names = Object.keys(zip.files).filter((n) => n.endsWith(".json")).sort();
     expect(names).toEqual(["about", "activities", "contact", "gallery", "general", "services"].map((n) => `content/${n}.json`));
   });

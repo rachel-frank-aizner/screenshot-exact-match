@@ -32,7 +32,7 @@ export function SectionEditor({ sectionKey }: { sectionKey: SectionKey }) {
       const items = [...d.items];
       const j = i + dir;
       if (j < 0 || j >= items.length) return d;
-      [items[i], items[j]] = [items[j], items[i]];
+      const t = items[i]!; items[i] = items[j]!; items[j] = t;
       return { ...d, items };
     });
 
