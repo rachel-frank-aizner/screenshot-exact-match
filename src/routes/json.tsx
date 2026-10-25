@@ -11,7 +11,7 @@ import { SECTIONS, type SectionDef } from "@/lib/cms/schema";
 import { useCms } from "@/lib/cms/store";
 import { downloadJson, toJson } from "@/lib/cms/export";
 import { validateSectionJson } from "@/lib/cms/validate";
-import { exportAll } from "./index";
+import { exportAll } from "@/lib/cms/actions";
 
 export const Route = createFileRoute("/json")({
   head: () => ({

@@ -1,10 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, Clock, FileJson, Layers, PackageOpen } from "lucide-react";
-import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { SECTIONS } from "@/lib/cms/schema";
 import { useCms } from "@/lib/cms/store";
-import { buildZip, downloadBlob } from "@/lib/cms/export";
+import { exportAll } from "@/lib/cms/actions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -17,13 +16,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Dashboard,
 });
-
-export async function exportAll(cms: ReturnType<typeof useCms>) {
-  const blob = await buildZip(cms.data);
-  downloadBlob(blob, "skillz-content.zip");
-  cms.markExported(SECTIONS.map((s) => s.key));
-  toast.success("ZIP עם כל קובצי ה-JSON יוצא בהצלחה");
-}
 
 function Dashboard() {
   const cms = useCms();

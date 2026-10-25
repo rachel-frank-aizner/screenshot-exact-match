@@ -15,6 +15,7 @@ import { Route as ActivitiesRouteImport } from './routes/activities'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as HeroRouteImport } from './routes/hero'
+import { Route as JsonRouteImport } from './routes/json'
 import { Route as ServicesRouteImport } from './routes/services'
 
 const IndexRoute = IndexRouteImport.update({
@@ -47,6 +48,11 @@ const HeroRoute = HeroRouteImport.update({
   path: '/hero',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JsonRoute = JsonRouteImport.update({
+  id: '/json',
+  path: '/json',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/hero': typeof HeroRoute
+  '/json': typeof JsonRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/hero': typeof HeroRoute
+  '/json': typeof JsonRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRoutesById {
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/hero': typeof HeroRoute
+  '/json': typeof JsonRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/hero'
+    | '/json'
     | '/services'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/hero'
+    | '/json'
     | '/services'
   id:
     | '__root__'
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/hero'
+    | '/json'
     | '/services'
   fileRoutesById: FileRoutesById
 }
@@ -118,6 +130,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   GalleryRoute: typeof GalleryRoute
   HeroRoute: typeof HeroRoute
+  JsonRoute: typeof JsonRoute
   ServicesRoute: typeof ServicesRoute
 }
 
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HeroRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/json': {
+      id: '/json'
+      path: '/json'
+      fullPath: '/json'
+      preLoaderRoute: typeof JsonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -182,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   GalleryRoute: GalleryRoute,
   HeroRoute: HeroRoute,
+  JsonRoute: JsonRoute,
   ServicesRoute: ServicesRoute,
 }
 export const routeTree = rootRouteImport
