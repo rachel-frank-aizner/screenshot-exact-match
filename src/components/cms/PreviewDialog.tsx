@@ -13,7 +13,7 @@ export function PreviewDialog({ open, onOpenChange, def, data }: { open: boolean
             {s("siteName") && <div className="font-display text-sm font-bold text-primary">{s("siteName")}</div>}
             <h2 className="font-display text-3xl font-black">{s("title")}</h2>
             {(s("subtitle") || s("text")) && <p className="text-muted-foreground">{s("subtitle") || s("text")}</p>}
-            {s("ctaText") && <a href={s("ctaLink")} target="_blank" rel="noreferrer" className="inline-block rounded-full bg-accent px-5 py-2 text-sm font-bold text-accent-foreground">{s("ctaText")}</a>}
+            {s("ctaText") && <a href={s("ctaLink")} target="_blank" rel="noreferrer" className="inline-block rounded-full bg-brand px-5 py-2 text-sm font-bold text-brand-foreground">{s("ctaText")}</a>}
             {s("email") && <p className="text-sm">{s("email")} · {s("phone")} · {s("address")}</p>}
             <div className="grid gap-4 pt-4 sm:grid-cols-2 md:grid-cols-3">
               {data.items.map((it) => (
