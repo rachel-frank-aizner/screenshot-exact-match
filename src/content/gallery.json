@@ -1,9 +1,0 @@
-{
-  "title": "גלריה",
-  "items": [
-    { "id": "img-1", "title": "סדנת מנהיגות", "image": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800" },
-    { "id": "img-2", "title": "יום שיא בבית הספר", "image": "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800" },
-    { "id": "img-3", "title": "עבודה בצוותים", "image": "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800" },
-    { "id": "img-4", "title": "טקס סיום", "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800" }
-  ]
-}

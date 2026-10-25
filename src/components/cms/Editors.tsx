@@ -63,8 +63,8 @@ export function ArrayEditor({
     let id: string | null = null;
     if (hasIds) {
       id = newId.trim();
-      if (!id) return toast.error("יש להזין id לפריט החדש");
-      if (items.some((it) => it["id"] === id)) return toast.error(`id "${id}" כבר קיים`);
+      if (!id) { toast.error("יש להזין id לפריט החדש"); return; }
+      if (items.some((it) => it["id"] === id)) { toast.error(`id "${id}" כבר קיים`); return; }
     }
     const r = addItem(items, id, linked ? he : undefined, prefix, fallback);
     onChange(r.arr);

@@ -9,7 +9,7 @@ const NAV = [
   { to: "/about", label: "אודות", icon: Info },
   { to: "/activities", label: "תחומי פעילות", icon: Layers },
   { to: "/services", label: "שירותים", icon: Briefcase },
-  { to: "/gallery", label: "גלריית תמונות", icon: Image },
+  { to: "/gallery", label: "פרויקטים וסרטונים", icon: Image },
   { to: "/contact", label: "יצירת קשר", icon: Phone },
   { to: "/json", label: "ניהול קובצי JSON", icon: FileJson },
 ] as const;
